@@ -1,4 +1,4 @@
-ame: Automated Code Review
+name: Automated Code Review
 
 on:
   push:
