@@ -1,15 +1,14 @@
-ame: Automated Code Review
+name: Automated Code Review
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ] # Trigger khi có PR hướng vào main
+    branches: [ "main" ]
 
 jobs:
   review:
     runs-on: ubuntu-latest
-    # Cấp quyền cho Action để nó có thể ghi comment vào PR
     permissions:
       contents: read
       pull-requests: write
@@ -23,10 +22,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: 'maven'
-
       # Tự động review code và tạo comment trực tiếp vào dòng lỗi
       - name: Run Checkstyle
         uses: dbelyaev/action-checkstyle@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           level: 'warning'
+          reporter: github-pr-review
