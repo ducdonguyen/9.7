@@ -34,4 +34,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           level: 'failure'
           reporter: 'github-pr-review'
-          checkstyle_config: google_checks.xml
