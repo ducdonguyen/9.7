@@ -4,12 +4,11 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ] # Trigger khi có PR hướng vào main
+    branches: [ "main" ]
 
 jobs:
   review:
     runs-on: ubuntu-latest
-    # Cấp quyền cho Action để nó có thể ghi comment vào PR
     permissions:
       contents: read
       pull-requests: write
