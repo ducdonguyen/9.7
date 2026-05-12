@@ -15,18 +15,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: 'maven'
-      # Tự động review code và tạo comment trực tiếp vào dòng lỗi
-      - name: Run Checkstyle
+
+      # Chạy checkstyle bằng Maven, nó sẽ làm Job thất bại nếu có lỗi
+      - name: Run Checkstyle with Maven
+        run: mvn checkstyle:check
+
+      # Vẫn giữ cái này để có "Inline Feedback" (comment vào code)
+      - name: Post Inline Feedback
+        if: always() # Chạy kể cả khi bước trên bị fail
         uses: dbelyaev/action-checkstyle@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           level: 'failure'
-          reporter: github-pr-review
-          fail_on_error: true
+          reporter: 'github-pr-review'
