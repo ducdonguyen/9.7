@@ -1,3 +1,3 @@
 public class User {
-  private String user_name;
+  rivate String user_name;
 }
