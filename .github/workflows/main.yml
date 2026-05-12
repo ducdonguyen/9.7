@@ -27,5 +27,5 @@ jobs:
         uses: dbelyaev/action-checkstyle@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          level: 'warning'
+          level: 'failure'
           reporter: github-pr-review
